@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.server.model.ServerVO" table="server" >
+        
+        <id name="serverid" column="serverid">
+            <generator class="sequence" >
+              <param name="sequence_name">server_seq</param>
+            </generator>  
+        </id>
+        
+        <property name="address" column="address" />
+        
+        <set name="users" table="user_server" inverse="true" cascade="save-update"> 
+            <key column="serverid"/> 
+            <many-to-many class="com.user1.model.User1VO" column="userid"/> 
+        </set> 
+    </class>
+</hibernate-mapping>
